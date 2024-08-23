@@ -1,0 +1,73 @@
+{% extends "./base.html" %} {% block content%}
+<div class="conte" style="width: 100%; display: grid; place-items: center;">
+  
+  <form style="width: 45rem; padding-right: 50px; padding-left: 50px; padding-top: 10px; background-color: rgb(189, 193, 246);" method="POST" action="" enctype="multipart/form-data">
+    <!-- Name input -->
+    <h3 style="text-align: center; padding-bottom: 25px; color: rgb(4, 4, 24);">Student Details</h3>
+    {% csrf_token %}
+    
+    <input type="file" class="form-control " name="image">
+    <label class="form-lable mb-4">Upload Image</label>
+    <div data-mdb-input-init class="form-outline mb-4">
+      <input type="text" id="form4Example1" class="form-control" name="name" />
+      <label class="form-label" for="form4Example1">Name</label>
+    </div>
+
+    <!-- Email input -->
+    <div data-mdb-input-init class="form-outline mb-4">
+      <input type="text" id="form4Example2" class="form-control" name="age"/>
+      <label class="form-label" for="form4Example2">AGE</label>
+    </div>
+
+    <!-- Message input -->
+    <div data-mdb-input-init class="form-outline mb-4">
+      <input type="text" id="form4Example2" class="form-control" name="city"/>
+      <label class="form-label" for="form4Example3">CITY</label>
+    </div>
+
+    <!-- Checkbox -->
+    <!-- <div class="form-check d-flex justify-content-center mb-4">
+      <input
+        class="form-check-input me-2"
+        type="checkbox"
+        value=""
+        id="form4Example4"
+        checked
+      />
+      <label class="form-check-label" for="form4Example4">
+        Send me a copy of this message
+      </label>
+    </div> -->
+
+    <!-- Submit button -->
+    <button
+      data-mdb-ripple-init
+      type="submit"
+      class="btn btn-primary btn-block mb-4 w-100"
+    >
+      Submit
+    </button>
+  </form>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">Name</th>
+      <th scope="col">Age</th>
+      <th scope="col">City</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in data %}
+    <tr>
+      <td><img src="{{user.image.url}}" alt="" style="width: 100px; height: 100px;"></td>
+      <td>{{user.name}}</td>
+      <td>{{user.age}}</td>
+      <td>{{user.city}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
